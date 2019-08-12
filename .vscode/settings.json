@@ -1,0 +1,24 @@
+{
+    "files.associations": {
+        "type_traits": "cpp",
+        "system_error": "cpp",
+        "xtr1common": "cpp",
+        "__bit_reference": "cpp",
+        "__functional_base": "cpp",
+        "algorithm": "cpp",
+        "atomic": "cpp",
+        "bitset": "cpp",
+        "chrono": "cpp",
+        "deque": "cpp",
+        "filesystem": "cpp",
+        "functional": "cpp",
+        "iterator": "cpp",
+        "limits": "cpp",
+        "locale": "cpp",
+        "memory": "cpp",
+        "ratio": "cpp",
+        "tuple": "cpp",
+        "__node_handle": "cpp",
+        "optional": "cpp"
+    }
+}

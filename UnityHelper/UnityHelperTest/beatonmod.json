@@ -1,0 +1,28 @@
+{
+  "id": "UnityHelperTester",
+  "name": "Unity Helper Tester",
+  "author": "Yuuki",
+  "coverImageFilename": "template_cover.png",
+  "porter": "",
+  "description": [
+    "Provides an interface to test UnityHelper functions."
+  ],
+  "category": "Gameplay",
+  "gameVersion": "1.2.0",
+  "version": "0.1.0",
+  "links": {
+    "project-home": "https://github.com/brandon-henry/UnityHelper/"
+  },
+  "platform": "Quest",
+  "components": [
+    {
+      "Type": "HookMod",
+      "InstallAction": {
+        "InstallLibraryFile": "libunityhelper.so"
+      },
+      "UninstallAction": {
+        "RemoveLibraryFile": "libunityhelper.so"
+      }
+    }
+  ]
+}
