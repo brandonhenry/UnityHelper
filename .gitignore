@@ -30,3 +30,11 @@
 *.exe
 *.out
 *.app
+
+**/libil2cpp/*
+*/obj/*
+*.so
+*.jar
+*.so
+
+**/ndk-bundle/*
