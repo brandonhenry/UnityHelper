@@ -1,6 +1,8 @@
+#ifndef MATERIAL_H
+#define MATERIAL_H
 
 
-class Material : Object
+class Material : UnityObject
 {
     public: 
         // // The main material's color.
@@ -36,4 +38,30 @@ class Material : Object
         // // Additional shader keywords set by this material.
         // shaderKeywords	
 
+        bool hasProperty(int propID)
+        {
+            const MethodInfo* materialHasProperty = class_get_method_from_name(Material::getKlass(), "HasProperty", 1);
+            void *params[] = {&propID};
+            return runtime_invoke(materialHasProperty, this, params, &exception);
+        }
+
+        float getFloat(int namdeID){
+            const MethodInfo* materialGetFloat = class_get_method_from_name(Material::getKlass(), "GetFloat", 1);
+            void *params[] = {&namdeID};
+            return *(reinterpret_cast<float *>(object_unbox(runtime_invoke(materialGetFloat, this, params, &exception))));
+        }
+
+        void setColor(string name, Color value){
+            const MethodInfo* materialSetColor = class_get_method_from_name(materialClass, "SetColor", 2);
+            void *materialColorParams[] = {name, &value};
+            runtime_invoke(materialSetColor, this, materialColorParams, &exception);
+        }
+
+        static Il2CppClass* getKlass(){
+            return GetClassFromName("UnityEngine", "Material");
+        }
+
+
 };
+
+#endif

@@ -23,10 +23,7 @@ class AssetBundle : UnityObject
 
         // Return true if the AssetBundle is a streamed Scene AssetBundle.
         bool isStreamedSceneAssetBundle;
-        void *asyncBundle;
-        Il2CppException *exception;
-        const MethodInfo *assetBundleFromFileAsync;
-        void *customSaberAssetBundle;
+        
 
         // Constructor //
         AssetBundle()
@@ -41,8 +38,10 @@ class AssetBundle : UnityObject
         In case of lzma compression, the data will be decompressed to the memory. Uncompressed and chunk-compressed bundles 
         can be read directly from disk. This is the fastest way to load an AssetBundle.
         */
-        void* LoadFromFileAsync(string assetFilePath){
-            
+        static AssetBundleCreateRequest LoadFromFileAsync(string assetFilePath){
+            static AssetBundleCreateRequest asyncBundle;
+            static Il2CppException *exception;
+            static const MethodInfo *assetBundleFromFileAsync;
            
             // Grab method
             assetBundleFromFileAsync = class_get_method_from_name(AssetBundle::getKlass(), "LoadFromFileAsync", 1);
@@ -52,7 +51,7 @@ class AssetBundle : UnityObject
             void *fromFileParams[] = {assetFilePathCStr};
 
             // run method and store result
-            AssetBundleCreateRequest asyncBundle = new AssetBundleCreateRequest(this, runtime_invoke(assetBundleFromFileAsync, nullptr, fromFileParams, &exception));
+            AssetBundleCreateRequest asyncBundle = runtime_invoke(assetBundleFromFileAsync, nullptr, fromFileParams, &exception);
 
             // null out references and return
 
@@ -69,27 +68,15 @@ class AssetBundle : UnityObject
         Synchronously loads asset with name of a given T from the bundle. 
         */
         void LoadAssetAsync(string assetPath){
-
-            if (customSaberAssetBundle == nullptr)
-            {
-                customSaberAssetBundle = runtime_invoke(assetBundleFromAsync, asyncBundle, nullptr, &exception);
-                log(INFO, "Grabbed Asset bundle");
-                asyncBundle = nullptr;
-            }
-
             // Grab method
             const MethodInfo *loadAssetAsync = class_get_method_from_name(AssetBundle::getKlass(), "LoadAssetAsync", 2);
 
-            void* customSaberAssetBundle = AssetBundleCreateRequest::getAssetBundle(asyncBundle);
-
-            if (customSaberAssetBundle != nullptr){
-                // Setup args
-                Il2CppString *assetPathCStr = createcsstr(assetPath);
-                void *assetPathParams[] = {assetPathCStr, type_get_object(class_get_type(GameObject::getKlass()))};
-            }
+            // Setup args
+            Il2CppString *assetPathCStr = createcsstr(assetPath);
+            void *assetPathParams[] = {assetPathCStr, type_get_object(class_get_type(GameObject::getKlass()))};
 
             // run method and store result
-            void *assetAsync = runtime_invoke(loadAssetAsync, customSaberAssetBundle, assetPathParams, &exception);
+            AssetBundleCreateRequest assetAsync = runtime_invoke(loadAssetAsync, this, assetPathParams, &exception);
 
             if (exception != nullptr)
             {
@@ -98,6 +85,7 @@ class AssetBundle : UnityObject
                 Il2CppString *message = reinterpret_cast<Il2CppString *>(exceptionString);
                 log(INFO, "Exception: %s", to_utf8(csstrtostr(message)).c_str());
             }
+
             log(INFO, "Grabbed Asset Async Request");
 
         }
@@ -107,10 +95,6 @@ class AssetBundle : UnityObject
             
         }
 
-        void* getAsyncBundle(){
-            return asyncBundle;
-        }
-        
         static Il2CppClass* getKlass()
         {
             return GetClassFromName("UnityEngine", "AssetBundle");

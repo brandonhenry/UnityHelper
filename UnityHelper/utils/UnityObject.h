@@ -50,7 +50,13 @@ public:
     int GetInstanceID();
 
     // Returns the name of the GameObject.
-    string ToString();
+    string ToString()
+    {
+        // MethodInfo *toString = class_get_method_from_name(UnityObject::getKlass(), "ToString", 0);
+        // void *newName = runtime_invoke(toString, this, nullptr, &exception);
+        // return reinterpret_cast<Il2CppString *>(newName);
+        return name;
+    }
 
     // Static Methods //
 
@@ -70,7 +76,17 @@ public:
     void** FindObjectsOfType();	
 
     // Clones the object original and returns the clone.
-    void Instantiate();	
+    static UnityObject Instantiate(UnityObject obj){
+        //Attempt to Instaniate GameObject
+        void *instantiateParams[] = {obj};
+        log(INFO, "Instantiated Asset Object");
+        return runtime_invoke(objectInstantiate, nullptr, instantiateParams, &exception);
+    };
+
+    static Il2CppClass* getKlass()
+    {
+        return GetClassFromName("UnityEngine", "Object");
+    }
 
 private:
 

@@ -20,31 +20,45 @@ public:
 
     // // Fields //
 
-    // // Defines whether the GameObject is active in the Scene.
-    // bool activeInHierarchy;
+    // Defines whether the GameObject is active in the Scene.
+    bool activeInHierarchy;
 
-    // // The local active state of this GameObject. (Read Only)
-    // bool activeSelf;	
+    // The local active state of this GameObject. (Read Only)
+    bool activeSelf;	
 
-    // // Editor only API that specifies if a game object is static.
-    // bool isStatic;	
+    // Editor only API that specifies if a game object is static.
+    bool isStatic;	
 
-    // // The layer the game object is in.
-    // int layer;	
+    // The layer the game object is in.
+    int layer;	
 
-    // // Scene that the GameObject is part of.
-    // Scene scene;	
+    // Scene that the GameObject is part of.
+    Scene scene;	
 
-    // // The tag of this game object.
-    // string tag;	
+    // The tag of this game object.
+    string tag;	
 
-    // // The Transform attached to this GameObject.
-    // Transform transform;	
+    // The Transform attached to this GameObject.
+    Transform transform;	
 
     // Constructor //
     GameObject();
 
-    // // Public Methods //
+    // Public Methods //
+
+    Transform getTransform()
+    {
+        // runtime_invoke(getGameObjectTransform, customSaberGameObject, nullptr, &exception);
+        // runtime_invoke(getGameObjectTransform,  saber.getGameObject(), nullptr, &exception);
+        return transform;
+    }
+
+    void setActive(bool active)
+    {
+        // void *disableParam[] = {&getInactive};
+        // runtime_invoke(gameObjectSetActive, filterObject, disableParam, &exception);
+        activeInHierarchy = active;
+    }
 
     // // Adds a component class named className to the game object.
     // void AddComponent();	

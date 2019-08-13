@@ -11,16 +11,33 @@ class Component : UnityObject
 
         // // Fields //
 
-        // // The game object this component is attached to. A component is always attached to a game object.
-        // GameObject gameObject;
+        // The game object this component is attached to. A component is always attached to a game object.
+        GameObject gameObject;
 
-        // // The tag of this game object.
-        // string tag;
+        // The tag of this game object.
+        string tag;
 
-        // // The Transform attached to this GameObject.
-        // Transform transform;
+        // The Transform attached to this GameObject.
+        Transform transform;
 
-        // // Public Methods // 
+        // Public Methods // 
+
+        GameObject getGameObject(){
+            const Method *componentGetGameObject = class_get_method_from_name(Component::getKlass(), "get_gameObject", 0);
+            return runtime_invoke(componentGetGameObject, this, nullptr, &exception);
+        }
+
+        // Returns all components of Type type in the GameObject or any of its children.
+        Array<Component *> GetComponentsInChildren(void* t, bool includeInactive){
+            const Method *componentGetComponentsInChildren = class_get_method_from_name(componentClass, "GetComponentsInChildren", 2);
+            void *getMeshFiltersParams[] = {t, &includeInactive};
+            return reinterpret_cast<Array<Component *> *>(runtime_invoke(componentGetComponentsInChildren, this, getMeshFiltersParams, &exception));
+        }
+
+        static Il2CppClass* getKlass()
+        {
+            return GetClassFromName("UnityEngine", "Component");
+        }
 
         // // Calls the method named methodName on every MonoBehaviour in this game object or any of its children.
         // // void BroadcastMessage(string methodName, SendMessageOptions options)	
@@ -40,8 +57,7 @@ class Component : UnityObject
         // // Returns all components of Type type in the GameObject.
         // Component* GetComponents(Il2CppType type);	
 
-        // // Returns all components of Type type in the GameObject or any of its children.
-        // Component* GetComponentsInChildren(Il2CppType t, bool includeInactive);
+       
 
         // // Returns all components of Type type in the GameObject or any of its parents.
         // Component* GetComponentsInParent(Il2CppType t, bool includeInactive = false);
