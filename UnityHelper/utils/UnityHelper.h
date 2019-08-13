@@ -1,27 +1,25 @@
+
+// Serves as a Helper library for Unity Scripting (https://docs.unity3d.com/ScriptReference/index.html)
+// for Il2Cpp Unity projects
+
 #ifndef UNITY_HELPER_H
 #define UNITY_HELPER_H
 
-#include "AssetBundle.h"
-#include "AssetBundleCreateRequest.h"
-#include "GameObject.h"
-#include "Material.h"
-#include "Mesh.h"
-#include "MeshFilter.h"
-#include "Object.h"
-#include "Renderer.h"
-#include "Resources.h"
-#include "Scene.h"
-#include "Shader.h"
-#include "Transform.h"
-
-using il2cpp_utils::createcsstr;
-using il2cpp_utils::GetClassFromName;
-using il2cpp_utils::New;
-using namespace il2cpp_functions;
+#include <android/log.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/stat.h> 
+#include <fcntl.h>
+#include <unistd.h>
+#include <dirent.h>
+#include <linux/limits.h>
+#include <sys/sendfile.h>
+#include <sys/stat.h>
 
 namespace UnityHelper
 {
-    UnityHelper();
+    int UnityHelper();
 }
 
 #endif /* UNITY_HELPER_H */

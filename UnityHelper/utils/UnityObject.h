@@ -1,4 +1,10 @@
-using std::string
+
+#ifndef UNITYOBJECT_H
+#define UNITYOBJECT_H
+
+#include <iostream>
+
+using std::string;
 
 struct HideFlags
 {
@@ -20,9 +26,9 @@ struct HideFlags
     bool DontSave;	
     // The GameObject is not shown in the Hierarchy, not saved to to Scenes, and not unloaded by Resources.UnloadUnusedAssets.
     bool HideAndDontSave;	
-}
+};
 
-class Object 
+class UnityObject 
 {
 
 public:
@@ -36,7 +42,7 @@ public:
     string name;
 
     // Constructor //
-    Object();
+    UnityObject();
 
     // Public Methods //
 
@@ -70,3 +76,5 @@ private:
 
 
 };
+
+#endif
