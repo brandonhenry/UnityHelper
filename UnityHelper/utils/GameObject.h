@@ -59,6 +59,12 @@ public:
         // runtime_invoke(gameObjectSetActive, filterObject, disableParam, &exception);
         activeInHierarchy = active;
     }
+    
+    // Custom Methods //
+    static Il2CppClass* getKlass(){
+    {
+        return GetClassFromName("UnityEngine", "GameObject");
+    };
 
     // // Adds a component class named className to the game object.
     // void AddComponent();	
@@ -112,12 +118,6 @@ public:
 
     // // Returns one active GameObject tagged tag. Returns null if no GameObject was found.
     // GameObject FindWithTag();	
-
-    // Custom Methods //
-    static Il2CppClass* getKlass(){
-    {
-        return GetClassFromName("UnityEngine", "GameObject");
-    };
 }
 
 #endif

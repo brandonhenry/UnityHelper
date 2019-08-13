@@ -8,7 +8,8 @@ class ColorSO : ScriptableObject
 public: 
     Color color;
 
-    Color getColor(){
+    Color getColor()
+    {
         return color;
     }
 }

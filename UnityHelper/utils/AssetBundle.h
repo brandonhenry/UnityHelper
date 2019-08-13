@@ -19,16 +19,24 @@ class AssetBundle : UnityObject
 {
     public:
 
-        // Fields //
+        // Fields : UnityEngine //
 
         // Return true if the AssetBundle is a streamed Scene AssetBundle.
         bool isStreamedSceneAssetBundle;
-        
+
+        // Fields : Il2Cpp //
+
+        void *params[];
+        Il2CppException *exception;
 
         // Constructor //
-        AssetBundle()
+        AssetBundle();
+
+        // Getters & Setters //
+        
+        bool getIsStreamedSceneAssetBundle()
         {
-            
+            return isStreamedSceneAssetBundle;
         }
 
         // Public Methods //
@@ -39,45 +47,39 @@ class AssetBundle : UnityObject
         can be read directly from disk. This is the fastest way to load an AssetBundle.
         */
         static AssetBundleCreateRequest LoadFromFileAsync(string assetFilePath){
-            static AssetBundleCreateRequest asyncBundle;
             static Il2CppException *exception;
-            static const MethodInfo *assetBundleFromFileAsync;
            
             // Grab method
-            assetBundleFromFileAsync = class_get_method_from_name(AssetBundle::getKlass(), "LoadFromFileAsync", 1);
+             static const MethodInfo *assetBundleFromFileAsync = class_get_method_from_name(AssetBundle::getKlass(), "LoadFromFileAsync", 1);
 
             // Setup args
-            Il2CppString *assetFilePathCStr = createcsstr(assetFilePath);
-            void *fromFileParams[] = {assetFilePathCStr};
+            Il2CppString *filePathCStr = createcsstr(assetFilePath);
+            static void *params[] = {filePathCStr};
 
             // run method and store result
-            AssetBundleCreateRequest asyncBundle = runtime_invoke(assetBundleFromFileAsync, nullptr, fromFileParams, &exception);
+            AssetBundleCreateRequest assetBundleCreateRequest = runtime_invoke(assetBundleFromFileAsync, nullptr, params, &exception);
 
             // null out references and return
 
             assetBundleFromFileAsync = nullptr;
-            return asyncBundle;
+            return assetBundleCreateRequest;
         }
-
-       void* getAsyncBundle(){
-           return asyncBundle;
-       }
-
 
         /*
         Synchronously loads asset with name of a given T from the bundle. 
         */
-        void LoadAssetAsync(string assetPath){
+        AssetBundleRequest LoadAssetAsync(string assetPath){
             // Grab method
             const MethodInfo *loadAssetAsync = class_get_method_from_name(AssetBundle::getKlass(), "LoadAssetAsync", 2);
 
             // Setup args
             Il2CppString *assetPathCStr = createcsstr(assetPath);
-            void *assetPathParams[] = {assetPathCStr, type_get_object(class_get_type(GameObject::getKlass()))};
+            params = {assetPathCStr, type_get_object(class_get_type(GameObject::getKlass()))};
 
             // run method and store result
-            AssetBundleCreateRequest assetAsync = runtime_invoke(loadAssetAsync, this, assetPathParams, &exception);
+            AssetBundleRequest assetBundleRequest = runtime_invoke(loadAssetAsync, this, params, &exception);
 
+            // catch error
             if (exception != nullptr)
             {
                 const MethodInfo *exceptionToString = class_get_method_from_name(exception->klass, "ToString", 0);
@@ -87,19 +89,15 @@ class AssetBundle : UnityObject
             }
 
             log(INFO, "Grabbed Asset Async Request");
-
-        }
-
-        // refreshes this classes fields
-        void refresh(){
             
+            loadAssetAsync = nullptr;
+            return assetBundleRequest;
         }
 
         static Il2CppClass* getKlass()
         {
             return GetClassFromName("UnityEngine", "AssetBundle");
         }
-
 };
 
 #endif

@@ -14,14 +14,10 @@ class AssetBundleCreateRequest : AsyncOperation
 {
     public: 
         AssetBundle assetBundle;
-        void* assetBundleCreateRequest; 
 
-        AssetBundleCreateRequest()
-        {
-            
-        };
+        AssetBundleCreateRequest();
 
-        static void* getAssetBundle()
+        static AssetBundle getAssetBundle()
         {
             const MethodInfo *assetBundleFromAsync = class_get_method_from_name(AssetBundleCreateRequest::getKlass(), "get_assetBundle", 0);
             
@@ -34,7 +30,10 @@ class AssetBundleCreateRequest : AsyncOperation
             }
 
             log(INFO, "Grabbed Asset Object");
-            return runtime_invoke(assetBundleFromAsync, this, nullptr, &exception);
+            
+            AssetBundle assetBundle = runtime_invoke(assetBundleFromAsync, this, nullptr, &exception);
+            assetBundleFromAsync = null;
+            return assetBundle;
         }
 
         AssetBundle getAsset(){

@@ -121,7 +121,6 @@ static AssetBundleCreateRequest asyncBundle;
 
 __attribute__((constructor)) void lib_main()
 {
-
     log(INFO, "Installing Custom Sabers Hooks!");
     INSTALL_HOOK(set_active_scene);
     INSTALL_HOOK(gameplay_core_scene_setup_start);

@@ -1,7 +1,7 @@
 #ifndef FRUSTUM_PLANES_H
 #define FRUSTUM_PLANES_H
 
-class FrustumPlanes
+struct FrustumPlanes
 {
     // Position in view space of the bottom side of the near projection plane.
     float bottom;	

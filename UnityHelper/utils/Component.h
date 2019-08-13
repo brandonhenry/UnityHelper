@@ -22,16 +22,31 @@ class Component : UnityObject
 
         // Public Methods // 
 
-        GameObject getGameObject(){
+        GameObject getGameObject()
+        {
             const Method *componentGetGameObject = class_get_method_from_name(Component::getKlass(), "get_gameObject", 0);
-            return runtime_invoke(componentGetGameObject, this, nullptr, &exception);
+            GameObject gameObj = runtime_invoke(componentGetGameObject, this, nullptr, &exception);
+            componentGetGameObject = nullptr;
+            return gameObj;
+        }
+
+        string getTag()
+        {
+            return tag;
+        }
+
+        Transform getTransform()
+        {
+            return transform;
         }
 
         // Returns all components of Type type in the GameObject or any of its children.
         Array<Component *> GetComponentsInChildren(void* t, bool includeInactive){
-            const Method *componentGetComponentsInChildren = class_get_method_from_name(componentClass, "GetComponentsInChildren", 2);
+            const MethodInfo *componentGetComponentsInChildren = class_get_method_from_name(componentClass, "GetComponentsInChildren", 2);
             void *getMeshFiltersParams[] = {t, &includeInactive};
-            return reinterpret_cast<Array<Component *> *>(runtime_invoke(componentGetComponentsInChildren, this, getMeshFiltersParams, &exception));
+            Array<Component *> components = reinterpret_cast<Array<Component *> *>(runtime_invoke(componentGetComponentsInChildren, this, getMeshFiltersParams, &exception));
+            componentGetComponentsInChildren = nullptr;
+            return components;
         }
 
         static Il2CppClass* getKlass()
@@ -56,8 +71,6 @@ class Component : UnityObject
 
         // // Returns all components of Type type in the GameObject.
         // Component* GetComponents(Il2CppType type);	
-
-       
 
         // // Returns all components of Type type in the GameObject or any of its parents.
         // Component* GetComponentsInParent(Il2CppType t, bool includeInactive = false);
