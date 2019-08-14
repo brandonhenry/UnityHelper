@@ -19,6 +19,11 @@ class AssetBundle : UnityObject
 {
     public:
 
+        enum struct MethodList {
+            LoadAssetAsync,
+            LoadFromFileAsync
+        };
+
         // Fields : UnityEngine //
 
         // Return true if the AssetBundle is a streamed Scene AssetBundle.
@@ -50,7 +55,7 @@ class AssetBundle : UnityObject
             static Il2CppException *exception;
            
             // Grab method
-             static const MethodInfo *assetBundleFromFileAsync = class_get_method_from_name(AssetBundle::getKlass(), "LoadFromFileAsync", 1);
+             static const MethodInfo *assetBundleFromFileAsync = getMethod(MethodList::LoadFromFileAsync);
 
             // Setup args
             Il2CppString *filePathCStr = createcsstr(assetFilePath);
@@ -70,7 +75,7 @@ class AssetBundle : UnityObject
         */
         AssetBundleRequest LoadAssetAsync(string assetPath){
             // Grab method
-            const MethodInfo *loadAssetAsync = class_get_method_from_name(AssetBundle::getKlass(), "LoadAssetAsync", 2);
+            const MethodInfo *loadAssetAsync = getMethod(MethodList::LoadAssetAsync);;
 
             // Setup args
             Il2CppString *assetPathCStr = createcsstr(assetPath);
@@ -94,10 +99,25 @@ class AssetBundle : UnityObject
             return assetBundleRequest;
         }
 
+        const MethodInfo* getMethod(AssetBundle::MethodList method)
+        {
+            const MethodInfo *grabbedMethod;
+            const Il2CppClass *myKlass = AssetBundle::getKlass();
+
+            switch (method)
+            {
+                case LoadAssetAsync:
+                    return class_get_method_from_name(myKlass, "LoadAssetAsync", 2);
+                case LoadFromFileAsync:
+                    return class_get_method_from_name(myKlass, "LoadFromFileAsync", 1);
+            }
+        }
+
         static Il2CppClass* getKlass()
         {
             return GetClassFromName("UnityEngine", "AssetBundle");
         }
+
 };
 
 #endif
