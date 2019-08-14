@@ -4,9 +4,9 @@
             "name": "Win32",
             "includePath": [
                 "${workspaceFolder}/**",
-                "C:/Users/bhenry.CAMCOM/Documents/ndk-bundle/**",
-                "C:/Users/bhenry.CAMCOM/Documents/ndk-bundle/sources/cxx-stl/llvm-libc++/include",
-                "C:/Users/bhenry.CAMCOM/Documents/ndk-bundle/sysroot/usr/include/x86_64-linux-android"
+                "C:/Users/Edward/Documents/ndk-bundle/**",
+                "C:/Users/Edward/Documents/ndk-bundle/sources/cxx-stl/llvm-libc++/include",
+                "C:/Users/Edward/Documents/ndk-bundle/sysroot/usr/include/x86_64-linux-android"
             ],
             "defines": [
                 "_DEBUG",
@@ -14,7 +14,7 @@
                 "_UNICODE"
             ],
             "windowsSdkVersion": "10.0.17763.0",
-            "compilerPath": "C:/Users/bhenry.CAMCOM/Documents/toolchains/x86_64-4.9/prebuilt/windows-x86_64/bin/x86_64-linux-android-c++filt.exe",
+            "compilerPath": "C:/Users/Edward/Documents/ndk-bundle/toolchains/x86_64-4.9/prebuilt/windows-x86_64/bin/x86_64-linux-android-c++filt.exe",
             "cStandard": "c11",
             "cppStandard": "c++2a",
             "intelliSenseMode": "clang-x64"

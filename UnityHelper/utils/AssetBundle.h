@@ -9,7 +9,6 @@
 #include "UnityObject.h"
 #include "AssetBundleRequest.h"
 #include "AssetBundleCreateRequest.h"
-#include "GameObject.h"
 
 using std::string;
 using il2cpp_utils::createcsstr;
