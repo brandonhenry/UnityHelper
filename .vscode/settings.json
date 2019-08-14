@@ -59,6 +59,9 @@
         "typeinfo": "cpp",
         "unordered_map": "cpp",
         "utility": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "xmemory0": "cpp",
+        "codecvt": "cpp",
+        "xlocale": "cpp"
     }
 }
