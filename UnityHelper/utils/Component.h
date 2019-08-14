@@ -8,7 +8,7 @@
 
 using namespace CommonStructs;
 
-class Component : public UnityObject
+class Component : public UnityObject, Il2CppObject
 {
     public: 
 

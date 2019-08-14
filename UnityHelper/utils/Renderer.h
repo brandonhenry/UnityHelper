@@ -8,7 +8,7 @@
 
 using namespace CommonStructs;
 
-class Renderer : public Component
+class Renderer : public Component, Il2CppObject
 {
 public: 
 

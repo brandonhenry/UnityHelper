@@ -17,7 +17,7 @@ using il2cpp_utils::GetClassFromName;
 using il2cpp_utils::New;
 using namespace il2cpp_functions;
 
-class AssetBundle : public UnityObject
+class AssetBundle : public UnityObject, Il2CppObject
 {
     public:
 

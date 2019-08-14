@@ -13,7 +13,7 @@ using il2cpp_utils::GetClassFromName;
 using il2cpp_utils::New;
 using namespace il2cpp_functions;
 
-struct HideFlags
+struct HideFlags : Il2CppObject
 {
     // A normal, visible object. This is the default.
     bool None;	
@@ -35,7 +35,7 @@ struct HideFlags
     bool HideAndDontSave;	
 };
 
-class UnityObject 
+class UnityObject : Il2CppObject
 {
 public:
     // Fields - Il2Cpp //

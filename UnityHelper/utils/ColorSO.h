@@ -3,7 +3,7 @@
 
 #include "ScriptableObject.h"
 
-class ColorSO : public ScriptableObject
+class ColorSO : public ScriptableObject, Il2CppObject
 {
 public: 
     Color color;

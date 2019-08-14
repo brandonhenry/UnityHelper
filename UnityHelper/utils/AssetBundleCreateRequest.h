@@ -10,17 +10,16 @@ using il2cpp_utils::GetClassFromName;
 using il2cpp_utils::New;
 using namespace il2cpp_functions;
 
-class AssetBundleCreateRequest : public AsyncOperation
+class AssetBundleCreateRequest : public AsyncOperation, Il2CppObject
 {
     public: 
         AssetBundle assetBundle;
-
         AssetBundleCreateRequest();
 
-        static AssetBundle getAssetBundle();
+        static AssetBundle* getAssetBundle();
 
         AssetBundle* getAsset();
-        Il2CppClass* getKlass();
+        static Il2CppClass* getKlass();
 };
 
 #endif

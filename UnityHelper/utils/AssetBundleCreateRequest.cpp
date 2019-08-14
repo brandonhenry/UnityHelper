@@ -1,9 +1,10 @@
 #include "AssetBundleCreateRequest.h" 
  
- static AssetBundle AssetBundleCreateRequest::AssetBundle getAssetBundle()
+AssetBundle* AssetBundleCreateRequest::getAssetBundle()
 {
+    Il2CppException *exception;
     const MethodInfo *assetBundleFromAsync = class_get_method_from_name(AssetBundleCreateRequest::getKlass(), "get_assetBundle", 0);
-    
+
     if (exception != nullptr)
     {
         const MethodInfo *exceptionToString = class_get_method_from_name(exception->klass, "ToString", 0);
@@ -13,16 +14,18 @@
     }
 
     log(INFO, "Grabbed Asset Object");
-    
-    AssetBundle assetBundle = runtime_invoke(assetBundleFromAsync, this, nullptr, &exception);
-    assetBundleFromAsync = null;
+
+    AssetBundleCreateRequest self;
+    AssetBundle *assetBundle = reinterpret_cast<AssetBundle *>(runtime_invoke(assetBundleFromAsync, &self, nullptr, &exception));
     return assetBundle;
 }
 
-AssetBundle getAsset(){
+AssetBundle getAsset()
+{
     return assetBundle;
 }
 
-Il2CppClass* getKlass(){
+Il2CppClass* getKlass()
+{
     return GetClassFromName("UnityEngine", "AssetBundleCreateRequest");
 }

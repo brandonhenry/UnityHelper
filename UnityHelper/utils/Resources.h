@@ -3,7 +3,7 @@
 
 #include "UnityObject.h"
 
-class Resources
+class Resources : Il2CppObject
 {
     public: 
 

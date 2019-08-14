@@ -12,7 +12,7 @@ using il2cpp_utils::GetClassFromName;
 using il2cpp_utils::New;
 using namespace il2cpp_functions;
 
-class AsyncOperation {
+class AsyncOperation : Il2CppObject {
     
 public:
     // Fields //

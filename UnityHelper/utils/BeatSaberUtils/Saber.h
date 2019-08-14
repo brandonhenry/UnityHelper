@@ -9,7 +9,7 @@ using il2cpp_utils::GetClassFromName;
 using il2cpp_utils::New;
 using namespace il2cpp_functions;
 
-class Saber : public Component {
+class Saber : public Component, Il2CppObject {
 public:
     enum struct MethodList {
         GetSaberType

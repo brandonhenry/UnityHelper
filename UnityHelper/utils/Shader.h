@@ -3,7 +3,7 @@
 
 #include "UnityObject.h"
 
-class Shader : public UnityObject
+class Shader : public UnityObject, Il2CppObject
 {
 public:
     enum struct MethodList {

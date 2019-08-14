@@ -10,7 +10,7 @@ using il2cpp_utils::GetClassFromName;
 using il2cpp_utils::New;
 using namespace il2cpp_functions;
 
-class Scene 
+class Scene : Il2CppObject
 {
 public:
     enum struct MethodList {

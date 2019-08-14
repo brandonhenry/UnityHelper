@@ -8,7 +8,7 @@
 
 using std::vector;
 
-struct AssetBundleRequest : public AsyncOperation
+struct AssetBundleRequest : public AsyncOperation, Il2CppObject
 {
     enum struct MethodList
     {

@@ -48,14 +48,14 @@ namespace CommonStructs
         Vector3 extents;
     };
 
-    typedef struct Vector4 {
+    typedef struct Vector4 : Il2CppObject {
         float w;
         float x;
         float y;
         float z;
     } Vector4;
 
-    struct FrustumPlanes
+    struct FrustumPlanes : Il2CppObject
     {
         // Position in view space of the bottom side of the near projection plane.
         float bottom;	
@@ -76,7 +76,7 @@ namespace CommonStructs
         float zNear;	
     };
 
-    enum struct SendMessageOptions 
+    enum struct SendMessageOptions
     {
         RequireReceiver,
         DontRequireReceiver

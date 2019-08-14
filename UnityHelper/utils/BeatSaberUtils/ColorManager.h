@@ -4,7 +4,7 @@
 #include "SimpleColorSO.h"
 #include "PlayerDataModelSO.h"
 
-class ColorManager : public ScriptableObject
+class ColorManager : public ScriptableObject, Il2CppObject
 {
 public:
     SimpleColorSO _colorA;

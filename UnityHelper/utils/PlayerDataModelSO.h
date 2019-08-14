@@ -3,7 +3,7 @@
 
 #include "ScriptableObject.h"
 
-class PlayerDataModelSO : public ScriptableObject
+class PlayerDataModelSO : public ScriptableObject, Il2CppObject
 {
 public: 
     // BeatmapCharacteristicCollectionSO _beatmapCharacteristicCollection;

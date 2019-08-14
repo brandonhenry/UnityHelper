@@ -7,7 +7,7 @@
 
 using namespace CommonStructs;
 
-class Transform : public Component
+class Transform : public Component, Il2CppObject
 {
 public:
     enum struct MethodList {

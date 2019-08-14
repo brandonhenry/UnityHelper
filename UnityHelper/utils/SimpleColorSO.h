@@ -3,7 +3,7 @@
 
 #include "ColorSO.h"
 
-class SimpleColorSO : ColorSO
+class SimpleColorSO : ColorSO, Il2CppObject
 {
 public: 
     Color _color;

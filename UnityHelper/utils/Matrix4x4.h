@@ -5,7 +5,7 @@
 
 using namespace CommonStructs;
 
-class Matrix4x4 
+class Matrix4x4 : Il2CppObject
 {
 public:
     Matrix4x4();	

@@ -4,7 +4,7 @@
 #include "Mesh.h"
 #include "Component.h"
 
-class MeshFilter : public Component
+class MeshFilter : public Component, Il2CppObject
 {
 public: 
     // Returns the instantiated Mesh assigned to the mesh filter.

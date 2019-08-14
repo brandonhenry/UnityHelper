@@ -2,7 +2,7 @@
 
 Color ColorForSaberType(int saberType){
     void *colorForSaberTypeParams[] = {&saberType};
-    colorManagerColorForSaberType = class_get_method_from_name(colorManagerClass, "ColorForSaberType", 1);
+    const MethodInfo *colorManagerColorForSaberType = class_get_method_from_name(ColorManager::getKlass(), "ColorForSaberType", 1);
     return *(reinterpret_cast<Color *>(object_unbox(runtime_invoke(colorManagerColorForSaberType, ColorManager::getKlass(), colorForSaberTypeParams, &exception))));
 }
 
