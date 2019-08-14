@@ -1,10 +1,17 @@
 
+#include <android/log.h>
+#include <iostream>
+
 #ifndef UNITYOBJECT_H
 #define UNITYOBJECT_H
 
-#include <iostream>
+#include "../../beatsaber-hook/shared/utils/utils.h"
 
 using std::string;
+using il2cpp_utils::createcsstr;
+using il2cpp_utils::GetClassFromName;
+using il2cpp_utils::New;
+using namespace il2cpp_functions;
 
 struct HideFlags
 {
@@ -30,10 +37,19 @@ struct HideFlags
 
 class UnityObject 
 {
-
 public:
+    // Fields - Il2Cpp //
 
-    // Fields //
+    void *params[];
+    Il2CppException *exception;
+    enum struct MethodList
+    {
+        Instantiate
+    };
+
+    static const MethodInfo* getMethod(MethodList method);
+
+    // Fields - UnityEngine //
 
     // Should the object be hidden, saved with the Scene or modifiable by the user?
     HideFlags hideFlags;
@@ -50,13 +66,7 @@ public:
     int GetInstanceID();
 
     // Returns the name of the GameObject.
-    string ToString()
-    {
-        // MethodInfo *toString = class_get_method_from_name(UnityObject::getKlass(), "ToString", 0);
-        // void *newName = runtime_invoke(toString, this, nullptr, &exception);
-        // return reinterpret_cast<Il2CppString *>(newName);
-        return name;
-    }
+    string ToString();
 
     // Static Methods //
 
@@ -76,21 +86,11 @@ public:
     void** FindObjectsOfType();	
 
     // Clones the object original and returns the clone.
-    static UnityObject Instantiate(UnityObject obj){
-        //Attempt to Instaniate GameObject
-        void *instantiateParams[] = {obj};
-        log(INFO, "Instantiated Asset Object");
-        return runtime_invoke(objectInstantiate, nullptr, instantiateParams, &exception);
-    };
+    static UnityObject* Instantiate(UnityObject* obj);
 
-    static Il2CppClass* getKlass()
-    {
-        return GetClassFromName("UnityEngine", "Object");
-    }
-
-private:
-
-
+    // Custom Methods //
+    static Il2CppClass* getKlass();
+    
 };
 
 #endif
