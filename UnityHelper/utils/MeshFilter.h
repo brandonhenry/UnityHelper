@@ -15,14 +15,9 @@ public:
 
     // Methods //
 
-    static void* getType(){
-        return type_get_object(class_get_type(MeshFilter::getKlass());)
-    }
-
-    static Il2CppClass* getKlass()
-    {
-        return GetClassFromName("UnityEngine", "AssetBundle");
-    }
+    static void* getType();
+    static Il2CppClass* getKlass();
+    MeshFilter();
 };
 
 #endif

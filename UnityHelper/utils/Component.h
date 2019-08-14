@@ -4,10 +4,24 @@
 #include "UnityObject.h"
 #include "GameObject.h"
 #include "Transform.h"
+#include "CommonStructs.h"
+
+using namespace CommonStructs;
 
 class Component : public UnityObject
 {
     public: 
+
+        enum struct MethodList {
+            GetComponentsInChildren,
+            GetGameObject
+        };
+
+        static const MethodInfo* getMethod(MethodList method);
+
+        // Fields : Il2Cpp //
+
+        Il2CppException *exception;
 
         // // Fields //
 
@@ -22,68 +36,46 @@ class Component : public UnityObject
 
         // Public Methods // 
 
-        GameObject getGameObject()
-        {
-            const Method *componentGetGameObject = class_get_method_from_name(Component::getKlass(), "get_gameObject", 0);
-            GameObject gameObj = runtime_invoke(componentGetGameObject, this, nullptr, &exception);
-            componentGetGameObject = nullptr;
-            return gameObj;
-        }
+        GameObject* getGameObject();
 
-        string getTag()
-        {
-            return tag;
-        }
+        string getTag();
 
-        Transform getTransform()
-        {
-            return transform;
-        }
+        Transform getTransform();
 
         // Returns all components of Type type in the GameObject or any of its children.
-        Array<Component *> GetComponentsInChildren(void* t, bool includeInactive){
-            const MethodInfo *componentGetComponentsInChildren = class_get_method_from_name(componentClass, "GetComponentsInChildren", 2);
-            void *getMeshFiltersParams[] = {t, &includeInactive};
-            Array<Component *> components = reinterpret_cast<Array<Component *> *>(runtime_invoke(componentGetComponentsInChildren, this, getMeshFiltersParams, &exception));
-            componentGetComponentsInChildren = nullptr;
-            return components;
-        }
+        Array<Component *>* GetComponentsInChildren(void* t, bool includeInactive);
 
-        static Il2CppClass* getKlass()
-        {
-            return GetClassFromName("UnityEngine", "Component");
-        }
+        static Il2CppClass* getKlass();
 
-        // // Calls the method named methodName on every MonoBehaviour in this game object or any of its children.
-        // // void BroadcastMessage(string methodName, SendMessageOptions options)	
+        // Calls the method named methodName on every MonoBehaviour in this game object or any of its children.
+        void BroadcastMessage(string methodName, SendMessageOptions options);
 
-        // // Is this game object tagged with tag ?
-        // bool CompareTag(string tag); 
+        // Is this game object tagged with tag ?
+        bool CompareTag(string tag); 
 
-        // // Returns the component of Type type if the game object has one attached, null if it doesn't.
-        // Component GetComponent(Il2CppType type);
+        // Returns the component of Type type if the game object has one attached, null if it doesn't.
+        Component GetComponent(Il2CppType type);
 
-        // // Returns the component of Type type in the GameObject or any of its children using depth first search.
-        // Component GetComponentInChildren(Il2CppType t);
+        // Returns the component of Type type in the GameObject or any of its children using depth first search.
+        Component GetComponentInChildren(Il2CppType t);
 
-        // // Returns the component of Type type in the GameObject or any of its parents.
-        // Component GetComponentInParent(Il2CppType t);	
+        // Returns the component of Type type in the GameObject or any of its parents.
+        Component GetComponentInParent(Il2CppType t);	
 
-        // // Returns all components of Type type in the GameObject.
-        // Component* GetComponents(Il2CppType type);	
+        // Returns all components of Type type in the GameObject.
+        Component* GetComponents(Il2CppType type);	
 
-        // // Returns all components of Type type in the GameObject or any of its parents.
-        // Component* GetComponentsInParent(Il2CppType t, bool includeInactive = false);
+        // Returns all components of Type type in the GameObject or any of its parents.
+        Component* GetComponentsInParent(Il2CppType t, bool includeInactive = false);
 
-        // // Calls the method named methodName on every MonoBehaviour in this game object.
-        // void SendMessage(string methodName, void* value);
+        // Calls the method named methodName on every MonoBehaviour in this game object.
+        void SendMessage(string methodName, void* value);
 
-        // // Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour.
-        // // void SendMessageUpwards(string methodName, SendMessageOptions options);
+        // Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour.
+        void SendMessageUpwards(string methodName, SendMessageOptions options);
 
-        // // Gets the component of the specified type, if it exists.
-        // // bool TryGetComponent(Il2CppType type, out Component component);
-
+        // Gets the component of the specified type, if it exists.
+        bool TryGetComponent(Il2CppType type, Component *component);
 };
 
 #endif

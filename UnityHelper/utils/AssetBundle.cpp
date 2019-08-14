@@ -77,12 +77,3 @@ static Il2CppClass* getKlass()
 {
     return GetClassFromName("UnityEngine", "AssetBundle");
 }
-
-const MethodInfo* UnityObject::getMethod(MethodList method)
-{
-    switch (method)
-    {
-        case MethodList::Instantiate:
-            return class_get_method_from_name(UnityObject::getKlass(), "Instantiate", 1);
-    }
-}

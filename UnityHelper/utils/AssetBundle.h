@@ -58,8 +58,6 @@ class AssetBundle : public UnityObject
         */
         AssetBundleRequest* LoadAssetAsync(string assetPath);
 
-        const MethodInfo* getMethod(AssetBundle::MethodList method);
-
         static Il2CppClass* getKlass();
 };
 

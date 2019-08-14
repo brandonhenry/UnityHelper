@@ -1,12 +1,14 @@
 #ifndef SIMPLE_COLOR_SO_H
 #define SIMPLE_COLOR_SO_H
 
+#include "ColorSO.h"
+
 class SimpleColorSO : ColorSO
 {
 public: 
     Color _color;
 
-    override Color getColor(){
+    Color getColor(){
         return _color;
     }
 
@@ -14,6 +16,6 @@ public:
     {
         this->_color = c;
     }
-}
+};
 
 #endif

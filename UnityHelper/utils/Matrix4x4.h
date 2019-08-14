@@ -1,9 +1,15 @@
 #ifndef MATRIX4X4_H
 #define MATRIX4X4_H
 
+#include "CommonStructs.h"
+
+using namespace CommonStructs;
+
 class Matrix4x4 
 {
 public:
+    Matrix4x4();	
+
     // Returns the identity matrix (Read Only).
     static Matrix4x4 identity;	
 
@@ -17,7 +23,7 @@ public:
     float determinant;	
 
     // The inverse of this matrix (Read Only).
-    Matrix4x4 inverse;	
+    Matrix4x4 *inverse;	
 
     // Is this the identity matrix?
     bool isIdentity;
@@ -29,10 +35,10 @@ public:
     Quaternion rotation;	
 
     // Access element at [row, column].
-    float this[int,int]	
+    // float this[int,int]	
 
     // Returns the transpose of this matrix (Read Only).
-    Matrix4x4 transpose;	
-}
+    Matrix4x4 *transpose;
+};
 
 #endif

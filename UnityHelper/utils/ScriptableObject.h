@@ -13,6 +13,6 @@ class ScriptableObject : public UnityObject
     static ScriptableObject CreateInstance(string klass) {
 
     }
-}
+};
 
 #endif

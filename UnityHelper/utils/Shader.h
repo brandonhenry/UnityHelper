@@ -6,6 +6,16 @@
 class Shader : public UnityObject
 {
 public:
+    enum struct MethodList {
+        PropertyToID
+    };
+
+    static const MethodInfo* getMethod(MethodList method);
+
+    // Fields : Il2Cpp //
+
+    Il2CppException *exception;
+
     // Fields //
     // Shader LOD level for all shaders.
     static int globalMaximumLOD;
@@ -25,19 +35,8 @@ public:
     // Render queue of this shader. (Read Only)
     int renderQueue;
 
-    static int PropertyToID(string property)
-    {
-        MethodInfo *shaderPropertyToID = class_get_method_from_name(Shader::getKlass(), "PropertyToID", 1);
-        Il2CppString *paramString = createcsstr(property);
-        void *params[] = {paramString};
-        return *(reinterpret_cast<int *>(object_unbox(runtime_invoke(shaderPropertyToID, nullptr, params, &exception))));
-    }
-
-    static Il2CppClass* getKlass(){
-        return GetClassFromName("UnityEngine", "Shader");
-    }
-
-
-}
+    static int PropertyToID(string property);
+    static Il2CppClass* getKlass();
+};
 
 #endif

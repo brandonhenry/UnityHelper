@@ -2,6 +2,8 @@
 #ifndef SCENE_H
 #define SCENE_H
 
+#include "../../beatsaber-hook/shared/utils/utils.h"
+
 using std::string;
 using il2cpp_utils::createcsstr;
 using il2cpp_utils::GetClassFromName;
@@ -11,24 +13,16 @@ using namespace il2cpp_functions;
 class Scene 
 {
 public:
+    enum struct MethodList {
+        GetNameInternal
+    };
+    static const MethodInfo* getMethod(MethodList method);
 
-    static auto GetNameInternal(int scene){
-        const MethodInfo *sceneNameMethodInfo = class_get_method_from_name(Scene::getKlass(), "GetNameInternal", 1);
+    // Fields : Il2Cpp //
 
-        Il2CppException *exception = nullptr;
-        void *sceneNameparams[] = {&scene};
-
-        auto nameResult = runtime_invoke(sceneNameMethodInfo, nullptr, sceneNameparams, &exception);
-        Il2CppString *csName = reinterpret_cast<Il2CppString *>(nameResult);
-
-        return to_utf8(csstrtostr(csName)).c_str();
-        
-    }
-    
-    Il2CppClass* getKlass(){
-        return GetClassFromName("UnityEngine.SceneManagement", "Scene");
-    }
-
+    Il2CppException *exception;
+    static auto GetNameInternal(int scene);
+    static Il2CppClass* getKlass();
 };
 
 #endif

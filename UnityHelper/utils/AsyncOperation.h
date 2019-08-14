@@ -13,7 +13,8 @@ using il2cpp_utils::New;
 using namespace il2cpp_functions;
 
 class AsyncOperation {
-
+    
+public:
     // Fields //
 
     Il2CppException *exception;

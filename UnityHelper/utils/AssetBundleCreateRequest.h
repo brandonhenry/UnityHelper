@@ -19,7 +19,7 @@ class AssetBundleCreateRequest : public AsyncOperation
 
         static AssetBundle getAssetBundle();
 
-        AssetBundle getAsset();
+        AssetBundle* getAsset();
         Il2CppClass* getKlass();
 };
 

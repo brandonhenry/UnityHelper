@@ -1,11 +1,11 @@
 
    #include "GameObject.h"
    
-   Transform GameObject::getTransform()
+   Transform* GameObject::getTransform()
     {
         // runtime_invoke(getGameObjectTransform, customSaberGameObject, nullptr, &exception);
         // runtime_invoke(getGameObjectTransform,  saber.getGameObject(), nullptr, &exception);
-        return transform;
+        return &transform;
     }
 
     void GameObject::setActive(bool active)

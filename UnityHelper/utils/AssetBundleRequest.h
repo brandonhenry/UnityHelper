@@ -10,8 +10,15 @@ using std::vector;
 
 struct AssetBundleRequest : public AsyncOperation
 {
+    enum struct MethodList
+    {
+        GetAsset
+    };
+    static const MethodInfo* getMethod(MethodList method);
+    static Il2CppClass* getKlass();
     vector<UnityObject> allAssets;
     UnityObject asset;
+    UnityObject* getAsset();
 };
 
 #endif

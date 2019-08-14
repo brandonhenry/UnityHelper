@@ -46,7 +46,7 @@ public:
 
     // Public Methods //
 
-    Transform getTransform();
+    Transform* getTransform();
 
     void setActive(bool active);
     
