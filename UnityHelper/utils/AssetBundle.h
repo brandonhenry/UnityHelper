@@ -9,6 +9,7 @@
 #include "UnityObject.h"
 #include "AssetBundleRequest.h"
 #include "AssetBundleCreateRequest.h"
+#include "GameObject.h"
 
 using std::string;
 using il2cpp_utils::createcsstr;
@@ -16,7 +17,7 @@ using il2cpp_utils::GetClassFromName;
 using il2cpp_utils::New;
 using namespace il2cpp_functions;
 
-class AssetBundle : UnityObject
+class AssetBundle : public UnityObject
 {
     public:
 
@@ -29,7 +30,6 @@ class AssetBundle : UnityObject
 
         // Fields : Il2Cpp //
 
-        void *params[];
         Il2CppException *exception;
 
         // Fields : UnityEngine //

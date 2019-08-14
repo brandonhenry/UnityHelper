@@ -3,7 +3,7 @@
 
 #include "ScriptableObject.h"
 
-class ColorSO : ScriptableObject
+class ColorSO : public ScriptableObject
 {
 public: 
     Color color;

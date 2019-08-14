@@ -2,7 +2,7 @@
 #define MATERIAL_H
 
 
-class Material : UnityObject
+class Material : public UnityObject
 {
     public: 
         // // The main material's color.

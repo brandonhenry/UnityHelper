@@ -11,8 +11,8 @@
 #include <map>
 #include "../beatsaber-hook/shared/inline-hook/inlineHook.h"
 #include "../beatsaber-hook/shared/utils/utils.h"
-#include "utils/UnityHelper.h"
 #include "utils/AssetBundleCreateRequest.h"
+#include "utils/Scene.h"
 
 //#undef log
 //#define log(INFO,...) __android_log_print(ANDROID_LOG_INFO, "QuestHook", "[UnityHelper v0.1.0] " __VA_ARGS__)
@@ -29,9 +29,8 @@ using il2cpp_utils::createcsstr;
 using il2cpp_utils::GetClassFromName;
 using il2cpp_utils::New;
 using namespace il2cpp_functions;
-using namespace UnityHelper;
 
-static AssetBundleCreateRequest asyncBundle;
+static AssetBundleCreateRequest *asyncBundle;
 
 MAKE_HOOK(set_active_scene, set_active_scene_offset, bool, int scene)
 {
@@ -61,7 +60,7 @@ MAKE_HOOK(gameplay_core_scene_setup_start, gameplay_core_scene_setup_start_offse
     if (asyncBundle == nullptr)
     {
         asyncBundle = AssetBundle::LoadFromFileAsync(saberLocation);
-        asyncBundle.setAllowSceneActivation(true);
+        (*asyncBundle).setAllowSceneActivation(true);
         log(INFO, "Loaded Async Bundle");
     }
     customSaberGameObject = nullptr;

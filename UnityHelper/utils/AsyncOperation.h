@@ -1,5 +1,10 @@
+#include <android/log.h>
+#include <iostream>
+
 #ifndef ASSET_OPERATION_H
 #define ASSET_OPERATION_H
+
+#include "../../beatsaber-hook/shared/utils/utils.h"
 
 using std::string;
 using il2cpp_utils::createcsstr;
@@ -10,6 +15,14 @@ using namespace il2cpp_functions;
 class AsyncOperation {
 
     // Fields //
+
+    Il2CppException *exception;
+    enum struct MethodList
+    {
+        setAllowSceneActivation
+    };
+
+    static const MethodInfo* getMethod(MethodList method);
 
     // Allow Scenes to be activated as soon as it is ready.
     bool allowSceneActivation;
@@ -25,38 +38,17 @@ class AsyncOperation {
 
     // Getters & Setters //
 
-    bool getIsDone(){
-        return isDone;
-    }
+    bool getIsDone();
 
-    int getPriority
-    {
-        return priority;
-    }
+    int getPriority();
 
-    void setPriority(int p)
-    {
-        priority = p;
-    }
+    void setPriority(int p);
 
-    float getProgress()
-    {
-        return progress;
-    }
+    float getProgress();
 
-    void setAllowSceneActivation(bool allow)
-    {
-        const MethodInfo *asyncOperationSetAllowSceneActivation = class_get_method_from_name(AsyncOperation::getKlass(), "set_allowSceneActivation", 1);
-        void *setSceneActivationParams[] = {&allow};
-        runtime_invoke(asyncOperationSetAllowSceneActivation, this, setSceneActivationParams, &exception);
-    }
+    void setAllowSceneActivation(bool allow);
 
-    // Methods // 
-
-    static Il2CppClass* getKlass()
-    {
-        return GetClassFromName("UnityEngine", "AsyncOperation");
-    }
+    static Il2CppClass* getKlass();
 };
 
 #endif

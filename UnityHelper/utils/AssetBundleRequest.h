@@ -8,7 +8,7 @@
 
 using std::vector;
 
-struct AssetBundleRequest : AsyncOperation
+struct AssetBundleRequest : public AsyncOperation
 {
     vector<UnityObject> allAssets;
     UnityObject asset;

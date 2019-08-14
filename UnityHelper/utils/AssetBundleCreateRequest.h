@@ -10,7 +10,7 @@ using il2cpp_utils::GetClassFromName;
 using il2cpp_utils::New;
 using namespace il2cpp_functions;
 
-class AssetBundleCreateRequest : AsyncOperation
+class AssetBundleCreateRequest : public AsyncOperation
 {
     public: 
         AssetBundle assetBundle;

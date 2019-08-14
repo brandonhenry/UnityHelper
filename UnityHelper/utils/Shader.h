@@ -3,7 +3,7 @@
 
 #include "UnityObject.h"
 
-class Shader : UnityObject
+class Shader : public UnityObject
 {
 public:
     // Fields //

@@ -3,7 +3,7 @@
 
 #include "ScriptableObject.h"
 
-class PlayerDataModelSO : ScriptableObject
+class PlayerDataModelSO : public ScriptableObject
 {
 public: 
     

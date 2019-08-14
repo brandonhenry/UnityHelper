@@ -7,7 +7,7 @@
 
 using std::string;
 
-class ScriptableObject : UnityObject
+class ScriptableObject : public UnityObject
 {
     // Methods //
     static ScriptableObject CreateInstance(string klass) {

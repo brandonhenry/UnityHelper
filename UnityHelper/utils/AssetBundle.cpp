@@ -38,10 +38,11 @@ AssetBundleRequest* AssetBundle::LoadAssetAsync(string assetPath){
 
     // Setup args
     Il2CppString *assetPathCStr = createcsstr(assetPath);
-    params = {assetPathCStr, type_get_object(class_get_type(GameObject::getKlass()))};
+    
+    void *params[] = {assetPathCStr, type_get_object(class_get_type(GameObject::getKlass()))};
 
     // run method and store result
-    AssetBundleRequest assetBundleRequest = runtime_invoke(loadAssetAsync, this, params, &exception);
+    AssetBundleRequest* assetBundleRequest = reinterpret_cast<AssetBundleRequest *>(runtime_invoke(loadAssetAsync, this, params, &exception));
 
     // catch error
     if (exception != nullptr)
@@ -58,16 +59,16 @@ AssetBundleRequest* AssetBundle::LoadAssetAsync(string assetPath){
     return assetBundleRequest;
 }
 
-const MethodInfo* getMethod(AssetBundle::MethodList method)
+const MethodInfo* AssetBundle::getMethod(MethodList method)
 {
     const MethodInfo *grabbedMethod;
-    const Il2CppClass *myKlass = AssetBundle::getKlass();
+    Il2CppClass *myKlass = AssetBundle::getKlass();
 
     switch (method)
     {
-        case LoadAssetAsync:
+        case MethodList::LoadAssetAsync:
             return class_get_method_from_name(myKlass, "LoadAssetAsync", 2);
-        case LoadFromFileAsync:
+        case MethodList::LoadFromFileAsync:
             return class_get_method_from_name(myKlass, "LoadFromFileAsync", 1);
     }
 }

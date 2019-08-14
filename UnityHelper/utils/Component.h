@@ -5,7 +5,7 @@
 #include "GameObject.h"
 #include "Transform.h"
 
-class Component : UnityObject
+class Component : public UnityObject
 {
     public: 
 

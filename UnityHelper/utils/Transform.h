@@ -3,7 +3,7 @@
 
 #include "Matrix4x4.h"
 
-class Transform : Component
+class Transform : public Component
 {
 public:
     // The number of children the parent Transform has.

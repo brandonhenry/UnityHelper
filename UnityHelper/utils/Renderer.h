@@ -4,7 +4,7 @@
 #include "Mesh.h"
 #include "Component.h"
 
-class MeshFilter : Component
+class MeshFilter : public Component
 {
 public: 
 
